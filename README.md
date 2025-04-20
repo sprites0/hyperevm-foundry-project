@@ -1,66 +1,27 @@
-## Foundry
+## hyperevm-foundry-project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository contains mock precompiles and helper contracts for interacting with HyperEVM's L1 read and write functionality in a Foundry test or deployment environment.
 
-Foundry consists of:
+### Usage
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+The mock precompiles can be set up in your tests or scripts by calling:
 
-## Documentation
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-https://book.getfoundry.sh/
+import {MockL1Precompiles} from "./MockL1Precompiles.sol";
+import {Script} from "forge-std/Script.sol";
 
-## Usage
+contract MyScript is Script {
+    function setUp() public {
+        MockL1Precompiles.setup();
+    }
 
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+    function run() public {
+        vm.startBroadcast();
+        ...
+        vm.stopBroadcast();
+    }
+}
 ```
