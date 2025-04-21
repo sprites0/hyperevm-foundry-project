@@ -1,5 +1,5 @@
 {
-  "name": "hyperevm-foundry-project",
+  "name": "hyperevm-project-template",
   "version": "1.0.0",
   "description": "A collection of mock precompiles and helper contracts for testing and deploying HyperEVM's L1 read/write functionality in Foundry.",
   "main": "index.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sprites0/hyperevm-foundry-project.git"
+    "url": "git+https://github.com/sprites0/hyperevm-project-template.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sprites0/hyperevm-foundry-project/issues"
+    "url": "https://github.com/sprites0/hyperevm-project-template/issues"
   },
-  "homepage": "https://github.com/sprites0/hyperevm-foundry-project#readme",
+  "homepage": "https://github.com/sprites0/hyperevm-project-template#readme",
   "devDependencies": {
     "@nomicfoundation/hardhat-foundry": "^1.1.3",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

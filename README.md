@@ -7,7 +7,7 @@ A collection of mock precompiles and helper contracts for testing and deploying 
 ## Installation
 
 ```sh
-forge install https://github.com/sprites0/hyperevm-foundry-project
+forge install https://github.com/sprites0/hyperevm-project-template
 ```
 
 ## Basic Usage
@@ -17,8 +17,8 @@ forge install https://github.com/sprites0/hyperevm-foundry-project
 ```solidity
 pragma solidity ^0.8.0;
 
-import {MockL1Precompiles} from "hyperevm-foundry-project/src/MockL1Precompiles.sol";
-import {L1Read} from "hyperevm-foundry-project/src/L1Read.sol";
+import {MockL1Precompiles} from "hyperevm-project-template/src/MockL1Precompiles.sol";
+import {L1Read} from "hyperevm-project-template/src/L1Read.sol";
 import {Test, console} from "forge-std/Test.sol";
 
 contract MyTest is Test {
@@ -37,8 +37,8 @@ contract MyTest is Test {
 ```solidity
 pragma solidity ^0.8.0;
 
-import {MockL1Precompiles} from "hyperevm-foundry-project/src/MockL1Precompiles.sol";
-import {L1Read} from "hyperevm-foundry-project/src/L1Read.sol";
+import {MockL1Precompiles} from "hyperevm-project-template/src/MockL1Precompiles.sol";
+import {L1Read} from "hyperevm-project-template/src/L1Read.sol";
 import {Script} from "forge-std/Script.sol";
 
 contract Example {
@@ -74,8 +74,8 @@ The `MoreRealisticL1Precompiles` library connects to a running HyperEVM RPC endp
 ```solidity
 pragma solidity ^0.8.0;
 
-import {MoreRealisticL1Precompiles} from "hyperevm-foundry-project/src/MoreRealisticL1Precompiles.sol";
-import {L1Read} from "hyperevm-foundry-project/src/L1Read.sol";
+import {MoreRealisticL1Precompiles} from "hyperevm-project-template/src/MoreRealisticL1Precompiles.sol";
+import {L1Read} from "hyperevm-project-template/src/L1Read.sol";
 import {Test, console} from "forge-std/Test.sol";
 
 contract MyTest is Test {
