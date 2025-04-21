@@ -28,7 +28,7 @@ contract MyScript is Script {
 
     function run() public {
         vm.startBroadcast();
-        ...
+        console.log(L1Read.l1BlockNumber());
         vm.stopBroadcast();
     }
 }
