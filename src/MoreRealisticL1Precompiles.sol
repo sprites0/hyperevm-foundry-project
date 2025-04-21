@@ -58,15 +58,10 @@ library MoreRealisticL1Precompiles {
 // Helper function to make RPC calls
 function _makeRpcCall(address target, bytes memory params) returns (bytes memory) {
     Vm vm = Vm(address(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D));
-    
+
     // Construct the JSON-RPC payload
-    string memory jsonPayload = string.concat(
-        '[{"to":"',
-        vm.toString(target),
-        '","data":"',
-        vm.toString(params),
-        '"},"latest"]'
-    );
+    string memory jsonPayload =
+        string.concat('[{"to":"', vm.toString(target), '","data":"', vm.toString(params), '"},"latest"]');
 
     // Make the RPC call
     return vm.rpc("eth_call", jsonPayload);
