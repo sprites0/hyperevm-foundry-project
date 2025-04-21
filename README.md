@@ -39,6 +39,9 @@ contract MyScript is Script {
 The `MoreRealisticL1Precompiles` library allows you to use the L1 precompiles in a more realistic way.
 It will forward the call to the HyperEVM RPC endpoint, so you need to have it running.
 
+However, the precompiles here cannot guarantee the atomicity of L1 read operations - calling multiple precompiles
+will result in multiple RPC calls, which always point to the latest L1 block data.
+
 ```solidity
 pragma solidity ^0.8.0;
 
@@ -52,6 +55,7 @@ contract MyTest is Test {
 
     function test_example() public {
         console.log(L1Read.l1BlockNumber());
+        console.log(L1Read.l1BlockNumber()); // different block number
     }
 }
 ```
