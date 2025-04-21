@@ -2,12 +2,14 @@
 pragma solidity ^0.8.13;
 
 import {Test, console} from "forge-std/Test.sol";
-import "../src/MockL1Precompiles.sol";
+// import "../src/MockL1Precompiles.sol";
+import "../src/MoreRealisticL1Precompiles.sol";
 import "../src/examples/PrecompileUser.sol";
 
 contract CounterTest is Test {
     function setUp() public {
-        MockL1Precompiles.setup();
+        // MockL1Precompiles.setup();
+        MoreRealisticL1Precompiles.setup();
     }
 
     function testDeploy() public {

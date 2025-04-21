@@ -16,7 +16,6 @@ forge install https://github.com/sprites0/hyperevm-foundry-project
 The mock precompiles can be set up in your tests or scripts by calling `MockL1Precompiles.setup()`:
 
 ```solidity
-// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import {MockL1Precompiles} from "hyperevm-foundry-project/src/MockL1Precompiles.sol";
@@ -31,6 +30,28 @@ contract MyScript is Script {
         vm.startBroadcast();
         ...
         vm.stopBroadcast();
+    }
+}
+```
+
+#### Advanced Usage: More realistic L1 precompiles
+
+The `MoreRealisticL1Precompiles` library allows you to use the L1 precompiles in a more realistic way.
+It will forward the call to the HyperEVM RPC endpoint, so you need to have it running.
+
+```solidity
+pragma solidity ^0.8.0;
+
+import {MoreRealisticL1Precompiles} from "hyperevm-foundry-project/src/MoreRealisticL1Precompiles.sol";
+import {Test, console} from "forge-std/Test.sol";
+
+contract MyTest is Test {
+    function setUp() public {
+        MoreRealisticL1Precompiles.setup();
+    }
+
+    function test_example() public {
+        console.log(L1Read.l1BlockNumber());
     }
 }
 ```
