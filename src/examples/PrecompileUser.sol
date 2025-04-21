@@ -9,4 +9,8 @@ contract PrecompileUser {
         uint64 blockNumber = L1Read.l1BlockNumber();
         console.log("blockNumber", blockNumber);
     }
+
+    function getBlockNumber() public view returns (uint64) {
+        return L1Read.l1BlockNumber();
+    }
 }
