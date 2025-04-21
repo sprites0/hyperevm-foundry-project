@@ -1,19 +1,18 @@
-## hyperevm-foundry-project
+# HyperEVM Foundry Project
 
-This repository contains mock precompiles and helper contracts for interacting with HyperEVM's L1 read and write functionality in a Foundry test or deployment environment.
+A collection of mock precompiles and helper contracts for testing and deploying HyperEVM's L1 read/write functionality in Foundry.
 
-### Warning: Highly experimental
+> ⚠️ **Experimental**: This project is under active development. The API may change, and the mock precompiles' reliability hasn't been fully tested.
 
-This project is still under development and the API is subject to change.
-Reliability or functionality of the mock precompiles has not been tested.
-
-### Installation & Usage
+## Installation
 
 ```sh
 forge install https://github.com/sprites0/hyperevm-foundry-project
 ```
 
-The mock precompiles can be set up in your tests or scripts by calling `MockL1Precompiles.setup()`:
+## Basic Usage
+
+### In Tests
 
 ```solidity
 pragma solidity ^0.8.0;
@@ -21,7 +20,6 @@ pragma solidity ^0.8.0;
 import {MockL1Precompiles} from "hyperevm-foundry-project/src/MockL1Precompiles.sol";
 import {L1Read} from "hyperevm-foundry-project/src/L1Read.sol";
 import {Test, console} from "forge-std/Test.sol";
-import {Script} from "forge-std/Script.sol";
 
 contract MyTest is Test {
     function setUp() public {
@@ -29,9 +27,19 @@ contract MyTest is Test {
     }
 
     function test_example() public {
-        console.log(L1Read.l1BlockNumber()); // returns 100
+        console.log(L1Read.l1BlockNumber()); // Returns 100
     }
 }
+```
+
+### In Scripts
+
+```solidity
+pragma solidity ^0.8.0;
+
+import {MockL1Precompiles} from "hyperevm-foundry-project/src/MockL1Precompiles.sol";
+import {L1Read} from "hyperevm-foundry-project/src/L1Read.sol";
+import {Script} from "forge-std/Script.sol";
 
 contract Example {
     event BlockNumber(uint64 indexed blockNumber);
@@ -49,19 +57,19 @@ contract MyScript is Script {
 
     function run() public {
         vm.startBroadcast();
-        new Example(); // This transaction will emit the real L1 block number
+        new Example(); // Emits the real L1 block number
         vm.stopBroadcast();
     }
 }
 ```
 
-#### Advanced Usage: More realistic L1 precompiles
+## Advanced Usage: Real L1 Precompiles
 
-The `MoreRealisticL1Precompiles` library allows you to use the L1 precompiles in a more realistic way.
-It will forward the call to the HyperEVM RPC endpoint, so you need to have it running.
+The `MoreRealisticL1Precompiles` library connects to a running HyperEVM RPC endpoint for actual L1 data. Note that:
 
-However, the precompiles here cannot guarantee the atomicity of L1 read operations - calling multiple precompiles
-will result in multiple RPC calls, which always point to the latest L1 block data.
+- Each precompile call triggers an RPC call
+- Multiple L1 read operations aren't atomic (they'll reflect the latest L1 block)
+- Performance is slower due to RPC overhead
 
 ```solidity
 pragma solidity ^0.8.0;
@@ -77,7 +85,7 @@ contract MyTest is Test {
 
     function test_example() public {
         console.log(L1Read.l1BlockNumber());
-        console.log(L1Read.l1BlockNumber()); // different block number
+        console.log(L1Read.l1BlockNumber()); // May show different block numbers
     }
 }
 ```
