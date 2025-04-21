@@ -43,6 +43,10 @@ contract Example {
 }
 
 contract MyScript is Script {
+    function setUp() public {
+        MockL1Precompiles.setup();
+    }
+
     function run() public {
         vm.startBroadcast();
         new Example(); // This transaction will emit the real L1 block number
